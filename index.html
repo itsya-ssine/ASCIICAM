@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h2 class="sr-only">
+      ASCII Art Live Converter — camera or video input with controls for
+      charset, font size, contrast, grain, and display mode
+    </h2>
+
+    <div class="top-bar">
+      <div class="logo">ASCII<span>CAM</span></div>
+      <div class="source-indicator" id="source-label">NAOKI</div>
+      <div class="top-bar-actions">
+        <button class="btn" id="btn-cam">START CAMERA</button>
+        <button class="btn danger block-btn" id="btn-stop-cam">
+          STOP CAMERA
+        </button>
+        <button class="btn primary" id="btn-screenshot">SCREENSHOT</button>
+        <button class="btn" id="btn-save">SAVE .TXT</button>
+        <button class="btn" id="btn-savepng">SAVE .PNG</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="sidebar">
+        <div class="section">
+          <div class="section-title">Display</div>
+          <div class="slider-row">
+            <label>Font <span class="val" id="v-font">8</span></label>
+          </div>
+          <input
+            type="range"
+            class="range-spaced"
+            id="s-font"
+            min="4"
+            max="20"
+            value="8"
+          />
+          <div class="slider-row">
+            <label>Speed <span class="val" id="v-fps">24</span>fps</label>
+          </div>
+          <input type="range" id="s-fps" min="1" max="60" value="24" />
+        </div>
+
+        <div class="section">
+          <div class="section-title">Image</div>
+          <div class="slider-row">
+            <label>Contrast <span class="val" id="v-contrast">100</span></label>
+          </div>
+          <input
+            type="range"
+            class="range-spaced"
+            id="s-contrast"
+            min="50"
+            max="300"
+            value="100"
+          />
+          <div class="slider-row">
+            <label>Brightness <span class="val" id="v-bright">100</span></label>
+          </div>
+          <input
+            type="range"
+            class="range-spaced"
+            id="s-bright"
+            min="0"
+            max="200"
+            value="100"
+          />
+          <div class="slider-row">
+            <label>Grain <span class="val" id="v-grain">0</span></label>
+          </div>
+          <input
+            type="range"
+            class="range-spaced"
+            id="s-grain"
+            min="0"
+            max="80"
+            value="0"
+          />
+          <div class="slider-row">
+            <label>Invert</label>
+            <input type="checkbox" class="invert-toggle" id="cb-invert" />
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Charset</div>
+          <select id="sel-charset">
+            <option value="standard">Standard Dense</option>
+            <option value="blocks">Block Elements</option>
+            <option value="minimal">Minimal</option>
+            <option value="digits">Digits</option>
+            <option value="braille">Braille</option>
+            <option value="morse">Morse-like</option>
+            <option value="matrix">Matrix</option>
+            <option value="custom">Custom...</option>
+          </select>
+          <input
+            type="text"
+            class="custom-charset-input"
+            id="custom-charset"
+            placeholder="Enter custom chars..."
+          />
+        </div>
+
+        <div class="section">
+          <div class="section-title">Color Mode</div>
+          <div class="mode-grid">
+            <div class="mode-btn active" data-mode="green">GREEN</div>
+            <div class="mode-btn" data-mode="white">WHITE</div>
+            <div class="mode-btn" data-mode="amber">AMBER</div>
+            <div class="mode-btn" data-mode="cyan">CYAN</div>
+            <div class="mode-btn" data-mode="red">RED</div>
+            <div class="mode-btn" data-mode="rainbow">RAINBOW</div>
+            <div class="mode-btn" data-mode="luma">LUMA</div>
+            <div class="mode-btn" data-mode="color">RGB COLOR</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Render Mode</div>
+          <div class="mode-grid">
+            <div class="mode-btn active" data-rmode="ascii">ASCII</div>
+            <div class="mode-btn" data-rmode="block">BLOCK</div>
+            <div class="mode-btn" data-rmode="half">HALF BLOCK</div>
+            <div class="mode-btn" data-rmode="edge">EDGE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-area">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="canvas"></canvas>
+        <pre id="ascii-out"></pre>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span
+        ><span class="dot red" id="status-dot"></span
+        ><span id="status-text">IDLE</span></span
+      >
+      <span id="stat-res">RES: —</span>
+      <span id="stat-chars">CHARS: —</span>
+      <span id="stat-mode">MODE: ASCII / GREEN</span>
+      <span class="status-credit">ASCIICAM v1.0</span>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
