@@ -1,6 +1,5 @@
 const CHARSETS = {
-  standard:
-    "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ",
+  standard: "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ",
   blocks: "█▓▒░ ",
   minimal: "@#+-. ",
   digits: "9876543210 ",
@@ -64,10 +63,18 @@ function getOutputGridSize(sourceWidth, sourceHeight) {
   const lineHeight = parseFloat(styles.lineHeight);
   const charWidth =
     state.font * 0.6 + (Number.isFinite(letterSpacing) ? letterSpacing : 0);
-  const charHeight = Number.isFinite(lineHeight) ? lineHeight : state.font * 1.2;
+  const charHeight = Number.isFinite(lineHeight)
+    ? lineHeight
+    : state.font * 1.2;
 
-  const maxCols = Math.max(1, Math.floor(contentWidth / Math.max(charWidth, 1)));
-  const maxRows = Math.max(1, Math.floor(contentHeight / Math.max(charHeight, 1)));
+  const maxCols = Math.max(
+    1,
+    Math.floor(contentWidth / Math.max(charWidth, 1)),
+  );
+  const maxRows = Math.max(
+    1,
+    Math.floor(contentHeight / Math.max(charHeight, 1)),
+  );
 
   // Force a fixed 16:9 output ratio while fitting in available output area.
   const sourceRatio = 16 / 9;
